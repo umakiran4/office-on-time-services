@@ -14,7 +14,14 @@ namespace CabAgeDataModel
     
     public partial class CategoryMaster
     {
+        public CategoryMaster()
+        {
+            this.EmployeeSurveyResults = new HashSet<EmployeeSurveyResult>();
+        }
+    
         public int CategoryID { get; set; }
         public string CategoryName { get; set; }
+    
+        public virtual ICollection<EmployeeSurveyResult> EmployeeSurveyResults { get; set; }
     }
 }

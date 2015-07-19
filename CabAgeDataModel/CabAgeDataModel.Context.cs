@@ -26,5 +26,8 @@ namespace CabAgeDataModel
         }
     
         public virtual DbSet<CategoryMaster> CategoryMasters { get; set; }
+        public virtual DbSet<EmployeeLocation> EmployeeLocations { get; set; }
+        public virtual DbSet<EmployeeMaster> EmployeeMasters { get; set; }
+        public virtual DbSet<EmployeeSurveyResult> EmployeeSurveyResults { get; set; }
     }
 }

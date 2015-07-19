@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,6 +41,18 @@ namespace CabAgeDataModel.GenericRepository
         {
             return DbSet.Find(id);
         }
+
+
+        /// <summary>
+        /// Generic get method on the basis of id for Entities.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public virtual TEntity GetByID(int key1 , int key2)
+        {
+            return DbSet.Find(key1, key2);
+        }
+
 
         /// <summary>
         /// generic Insert method for the entities
@@ -175,8 +188,20 @@ namespace CabAgeDataModel.GenericRepository
         public TEntity GetFirst(Func<TEntity, bool> predicate)
         {
             return DbSet.First<TEntity>(predicate);
+
         }
 
+        /// <summary>
+        /// Gets by a predicate
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public IEnumerable<TEntity> GetBy(Expression<Func<TEntity, bool>> predicate)
+        {
+            IQueryable<TEntity> query = DbSet;
+            return query.Where(predicate);
+        }
 
         #endregion
 

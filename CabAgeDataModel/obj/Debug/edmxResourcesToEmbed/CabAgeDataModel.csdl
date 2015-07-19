@@ -2,6 +2,21 @@
 <Schema Namespace="CabAgeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="CabAgeEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="CategoryMasters" EntityType="CabAgeModel.CategoryMaster" />
+    <EntitySet Name="EmployeeLocations" EntityType="CabAgeModel.EmployeeLocation" />
+    <EntitySet Name="EmployeeMasters" EntityType="CabAgeModel.EmployeeMaster" />
+    <AssociationSet Name="FK_EmployeeLocation_EmployeeMaster" Association="CabAgeModel.FK_EmployeeLocation_EmployeeMaster">
+      <End Role="EmployeeMaster" EntitySet="EmployeeMasters" />
+      <End Role="EmployeeLocation" EntitySet="EmployeeLocations" />
+    </AssociationSet>
+    <EntitySet Name="EmployeeSurveyResults" EntityType="CabAgeModel.EmployeeSurveyResult" />
+    <AssociationSet Name="FK_EmployeeSurveyResults_CategoryMaster" Association="CabAgeModel.FK_EmployeeSurveyResults_CategoryMaster">
+      <End Role="CategoryMaster" EntitySet="CategoryMasters" />
+      <End Role="EmployeeSurveyResult" EntitySet="EmployeeSurveyResults" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeSurveyResults_EmployeeMaster" Association="CabAgeModel.FK_EmployeeSurveyResults_EmployeeMaster">
+      <End Role="EmployeeMaster" EntitySet="EmployeeMasters" />
+      <End Role="EmployeeSurveyResult" EntitySet="EmployeeSurveyResults" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="CategoryMaster">
     <Key>
@@ -9,5 +24,73 @@
     </Key>
     <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="EmployeeSurveyResults" Relationship="CabAgeModel.FK_EmployeeSurveyResults_CategoryMaster" FromRole="CategoryMaster" ToRole="EmployeeSurveyResult" />
   </EntityType>
+  <EntityType Name="EmployeeLocation">
+    <Key>
+      <PropertyRef Name="EmployeeLocationID" />
+    </Key>
+    <Property Name="EmployeeLocationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeGeoLocation" Type="Geography" />
+    <NavigationProperty Name="EmployeeMaster" Relationship="CabAgeModel.FK_EmployeeLocation_EmployeeMaster" FromRole="EmployeeLocation" ToRole="EmployeeMaster" />
+  </EntityType>
+  <EntityType Name="EmployeeMaster">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="300" FixedLength="true" Unicode="true" />
+    <Property Name="EmployeeEmail" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="EmployeeMobileNumber" Type="Int64" />
+    <NavigationProperty Name="EmployeeLocations" Relationship="CabAgeModel.FK_EmployeeLocation_EmployeeMaster" FromRole="EmployeeMaster" ToRole="EmployeeLocation" />
+    <NavigationProperty Name="EmployeeSurveyResults" Relationship="CabAgeModel.FK_EmployeeSurveyResults_EmployeeMaster" FromRole="EmployeeMaster" ToRole="EmployeeSurveyResult" />
+  </EntityType>
+  <Association Name="FK_EmployeeLocation_EmployeeMaster">
+    <End Type="CabAgeModel.EmployeeMaster" Role="EmployeeMaster" Multiplicity="1" />
+    <End Type="CabAgeModel.EmployeeLocation" Role="EmployeeLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeMaster">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="EmployeeLocation">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="EmployeeSurveyResult">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="Rating" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CategoryMaster" Relationship="CabAgeModel.FK_EmployeeSurveyResults_CategoryMaster" FromRole="EmployeeSurveyResult" ToRole="CategoryMaster" />
+    <NavigationProperty Name="EmployeeMaster" Relationship="CabAgeModel.FK_EmployeeSurveyResults_EmployeeMaster" FromRole="EmployeeSurveyResult" ToRole="EmployeeMaster" />
+  </EntityType>
+  <Association Name="FK_EmployeeSurveyResults_CategoryMaster">
+    <End Type="CabAgeModel.CategoryMaster" Role="CategoryMaster" Multiplicity="1" />
+    <End Type="CabAgeModel.EmployeeSurveyResult" Role="EmployeeSurveyResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategoryMaster">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="EmployeeSurveyResult">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeSurveyResults_EmployeeMaster">
+    <End Type="CabAgeModel.EmployeeMaster" Role="EmployeeMaster" Multiplicity="1" />
+    <End Type="CabAgeModel.EmployeeSurveyResult" Role="EmployeeSurveyResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeMaster">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="EmployeeSurveyResult">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

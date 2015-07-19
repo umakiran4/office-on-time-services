@@ -1,0 +1,95 @@
+
+-------------------------EMPLOYEE SURVEY URLs---------------------
+								
+
+1) employeesurvey/employee/{id?} 
+   Description   : - This gives survey details of an employee based on EmployeeID.
+   Eg            :-  employeesurvey/employee/4733
+   Sample Result :-
+
+
+2) employeesurvey/category/{id?}
+   Description   : - This gives survey details of an employee based on CategoryID.
+   Eg            :-  employeesurvey/category/1
+   Sample Result :-
+   
+3) employeesurvey/employee/{employeeid?}/category/{categoryid?}
+   
+   Description   : - This gives survey details of an employee based on EmployeeID and CategoryID (always UNIQUE).
+   Eg            :-  employeesurvey/employee/4733/category/1
+   Sample Result :-
+
+4) employeesurvey/create
+
+   Description   : - POST method that creates an EmployeeSurvey . Expects an IList<EmployeeSurveyBusinessEntity> 
+   
+5) employeesurvey/iscomplete/employee/{id?}
+
+   Description   : - This returns whether the survey of an employee is complete or not
+   Eg            :-  employeesurvey/iscomplete/employee/4733
+   Sample Result :-   true or false
+   
+   
+------------------EMPLOYEE MASTER URLs---------------------
+			
+6) employees/getall
+   
+   Description   : - Returns all employees
+   
+7) employees/employee/{id?}
+    
+   Description   : - Returns a particular employee based on EmployeeID (always UNIQUE)
+   Eg            : - employees/employee/4733
+
+8) employee/create
+   
+   Description   : - Creates a new Employee . Expects 	EmployeeMasterBusinessEntity.
+
+9) employee/isregistered/{id?}
+
+   Description   : - Returns whether an employee is Registered.
+   Eg            :-  employee/isregistered/4733
+   Sample Result :- true or false
+
+                  
+----------------------CATEGORY MASTER URLs-----------
+
+10) categories/getall
+
+	Description   : - Returns all categories
+	
+11) categories/category/{id?}
+
+    Description   : - Returns a category based on CategoryID (always UNIQUE)
+	eg            :-  categories/category/1
+	
+	
+----------------------EMPLOYEE LOCATION URLs----------
+
+						   
+12) location/employee/{id?}
+    
+    Description    :- Returns location of an Employee (always UNIQUE)
+    eg             :-  location/employee/4733
+	
+
+13) employeelocation/create
+
+    Description    :-  POST method to create an Employee Location.
+
+
+    	
+
+    	
+							
+
+   
+   
+	 
+   
+   
+
+   
+   
+   
+

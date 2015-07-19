@@ -7,7 +7,84 @@
     <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CategoryName" Type="nchar" MaxLength="50" Nullable="false" />
   </EntityType>
+  <EntityType Name="EmployeeLocation">
+    <Key>
+      <PropertyRef Name="EmployeeLocationID" />
+    </Key>
+    <Property Name="EmployeeLocationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeID" Type="int" Nullable="false" />
+    <Property Name="EmployeeGeoLocation" Type="geography" />
+  </EntityType>
+  <EntityType Name="EmployeeMaster">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="int" Nullable="false" />
+    <Property Name="EmployeeName" Type="nchar" MaxLength="300" Nullable="false" />
+    <Property Name="EmployeeEmail" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="EmployeeMobileNumber" Type="bigint" />
+  </EntityType>
+  <EntityType Name="EmployeeSurveyResults">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="EmployeeID" Type="int" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="Rating" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_EmployeeLocation_EmployeeMaster">
+    <End Role="EmployeeMaster" Type="Self.EmployeeMaster" Multiplicity="1" />
+    <End Role="EmployeeLocation" Type="Self.EmployeeLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeMaster">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="EmployeeLocation">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeSurveyResults_CategoryMaster">
+    <End Role="CategoryMaster" Type="Self.CategoryMaster" Multiplicity="1" />
+    <End Role="EmployeeSurveyResults" Type="Self.EmployeeSurveyResults" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategoryMaster">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="EmployeeSurveyResults">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeSurveyResults_EmployeeMaster">
+    <End Role="EmployeeMaster" Type="Self.EmployeeMaster" Multiplicity="1" />
+    <End Role="EmployeeSurveyResults" Type="Self.EmployeeSurveyResults" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeMaster">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="EmployeeSurveyResults">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="CabAgeModelStoreContainer">
     <EntitySet Name="CategoryMaster" EntityType="Self.CategoryMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeLocation" EntityType="Self.EmployeeLocation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeMaster" EntityType="Self.EmployeeMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeSurveyResults" EntityType="Self.EmployeeSurveyResults" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_EmployeeLocation_EmployeeMaster" Association="Self.FK_EmployeeLocation_EmployeeMaster">
+      <End Role="EmployeeMaster" EntitySet="EmployeeMaster" />
+      <End Role="EmployeeLocation" EntitySet="EmployeeLocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeSurveyResults_CategoryMaster" Association="Self.FK_EmployeeSurveyResults_CategoryMaster">
+      <End Role="CategoryMaster" EntitySet="CategoryMaster" />
+      <End Role="EmployeeSurveyResults" EntitySet="EmployeeSurveyResults" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeSurveyResults_EmployeeMaster" Association="Self.FK_EmployeeSurveyResults_EmployeeMaster">
+      <End Role="EmployeeMaster" EntitySet="EmployeeMaster" />
+      <End Role="EmployeeSurveyResults" EntitySet="EmployeeSurveyResults" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -44,9 +44,15 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Unity.Mvc3">
+      <HintPath>..\packages\Unity.Mvc3.1.2\lib\net40\Unity.Mvc3.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryMasterBusinessEnitity.cs" />
+    <Compile Include="EmployeeLocationBusinessEntity.cs" />
+    <Compile Include="EmployeeMasterBusinessEntity.cs" />
+    <Compile Include="EmployeeSurveyBusinessEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

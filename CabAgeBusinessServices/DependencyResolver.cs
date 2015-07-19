@@ -16,6 +16,9 @@ namespace CabAgeBusinessServices
         public void SetUp(IRegisterComponent registerComponent)
         {
             registerComponent.RegisterType<ICategoryMasterService,CategoryMasterService>();
+            registerComponent.RegisterType<IEmployeeMasterService,EmployeeMasterService>();
+            registerComponent.RegisterType<IEmployeeLocationService,EmployeeLocationService>();
+            registerComponent.RegisterType<IEmployeeSurveyService, EmployeSurveyService>();
         }
     }
 }

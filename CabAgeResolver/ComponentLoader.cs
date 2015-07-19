@@ -16,6 +16,7 @@ namespace Resolver
         {
             var dirCat = new DirectoryCatalog(path, pattern);
             var importDef = BuildImportDefinition();
+            Container.UnityContainer = container;
             try
             {
                 using (var aggregateCatalog = new AggregateCatalog())

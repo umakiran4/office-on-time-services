@@ -11,6 +11,10 @@ namespace CabAgeDataModel.UnitOfWork
     {
         private CabAgeEntities context = null;
         private GenericRepository<CategoryMaster> categoryMasterRepository;
+        private GenericRepository<EmployeeMaster> employeeMasterRepository;
+        private GenericRepository<EmployeeLocation> employeeLocationRepository;
+        private GenericRepository<EmployeeSurveyResult> employeeSurveyRepository;
+
         private bool disposed = false;
 
         public UnitOfWork()
@@ -25,6 +29,37 @@ namespace CabAgeDataModel.UnitOfWork
                        (categoryMasterRepository = new GenericRepository<CategoryMaster>(context));
             }
         }
+
+        public GenericRepository<EmployeeMaster> EmployeeMasterRepository
+        {
+            get
+            {
+                return employeeMasterRepository ??
+                       (employeeMasterRepository = new GenericRepository<EmployeeMaster>(context));
+            }
+        }
+
+
+        public GenericRepository<EmployeeLocation> EmployeeLocationRepository
+        {
+            get
+            {
+                return employeeLocationRepository ??
+                       (employeeLocationRepository = new GenericRepository<EmployeeLocation>(context));
+            }
+        }
+
+
+        public GenericRepository<EmployeeSurveyResult> EmployeeSurveyRepository
+        {
+            get
+            {
+                return employeeSurveyRepository ??
+                       (employeeSurveyRepository = new GenericRepository<EmployeeSurveyResult>(context));
+            }
+        }
+
+
 
         public void Save()
         {

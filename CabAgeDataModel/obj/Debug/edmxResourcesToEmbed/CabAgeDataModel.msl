@@ -9,5 +9,33 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeLocations">
+      <EntityTypeMapping TypeName="CabAgeModel.EmployeeLocation">
+        <MappingFragment StoreEntitySet="EmployeeLocation">
+          <ScalarProperty Name="EmployeeGeoLocation" ColumnName="EmployeeGeoLocation" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="EmployeeLocationID" ColumnName="EmployeeLocationID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeMasters">
+      <EntityTypeMapping TypeName="CabAgeModel.EmployeeMaster">
+        <MappingFragment StoreEntitySet="EmployeeMaster">
+          <ScalarProperty Name="EmployeeMobileNumber" ColumnName="EmployeeMobileNumber" />
+          <ScalarProperty Name="EmployeeEmail" ColumnName="EmployeeEmail" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeSurveyResults">
+      <EntityTypeMapping TypeName="CabAgeModel.EmployeeSurveyResult">
+        <MappingFragment StoreEntitySet="EmployeeSurveyResults">
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

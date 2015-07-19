@@ -19,23 +19,28 @@ namespace CabAgeBusinessServices.Services
         }
 
 
-        public CategoryMasterBusinessEnitity GetCategoryById(int categoryId)
+        public CategoryMasterBusinessEnitity GetCategoryById(int id)
         {
-            var category = unitOfWork.CategoryMasterRepository.GetByID(categoryId);
+            var category = unitOfWork.CategoryMasterRepository.GetByID(id);
 
             if (category == null) return null;
+
             Mapper.CreateMap<CategoryMaster, CategoryMasterBusinessEnitity>();
             var categoryModel = Mapper.Map<CategoryMaster,CategoryMasterBusinessEnitity>(category);
+
             return categoryModel;
         }
+
 
         public IEnumerable<CategoryMasterBusinessEnitity> GetAllCategories()
         {
             var categories = unitOfWork.CategoryMasterRepository.GetAll().ToList();
 
             if (!categories.Any()) return null;
+
             Mapper.CreateMap<CategoryMaster,CategoryMasterBusinessEnitity>();
             var categoriesModel = Mapper.Map<List<CategoryMaster>, List<CategoryMasterBusinessEnitity>>(categories);
+
             return categoriesModel;
         }
 
