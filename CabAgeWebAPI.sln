@@ -1,10 +1,7 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CabAgeWebAPI", "CabAgeWenAPI\CabAgeWebAPI.csproj", "{A08007BB-53B2-4145-A240-ECBDD288FC08}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CabAgeBusinessEntities", "CabAgeBusinessEntities\CabAgeBusinessEntities.csproj", "{B9A05520-6112-40C6-A3CC-9B712EFE07DE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CabAgeBusinessServices", "CabAgeBusinessServices\CabAgeBusinessServices.csproj", "{ED961E1E-540B-453C-A31F-BDA0F0F41E19}"
@@ -23,16 +20,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\WebApiURLs.txt = Documentation\WebApiURLs.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CabAgeWebAPI", "CabAgeWebAPI\CabAgeWebAPI.csproj", "{A08007BB-53B2-4145-A240-ECBDD288FC08}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A08007BB-53B2-4145-A240-ECBDD288FC08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A08007BB-53B2-4145-A240-ECBDD288FC08}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A08007BB-53B2-4145-A240-ECBDD288FC08}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A08007BB-53B2-4145-A240-ECBDD288FC08}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B9A05520-6112-40C6-A3CC-9B712EFE07DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B9A05520-6112-40C6-A3CC-9B712EFE07DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9A05520-6112-40C6-A3CC-9B712EFE07DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -49,6 +44,10 @@ Global
 		{BEEE0AEF-9465-4658-8AB6-1DEFF450B270}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEEE0AEF-9465-4658-8AB6-1DEFF450B270}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEEE0AEF-9465-4658-8AB6-1DEFF450B270}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A08007BB-53B2-4145-A240-ECBDD288FC08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A08007BB-53B2-4145-A240-ECBDD288FC08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A08007BB-53B2-4145-A240-ECBDD288FC08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A08007BB-53B2-4145-A240-ECBDD288FC08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
