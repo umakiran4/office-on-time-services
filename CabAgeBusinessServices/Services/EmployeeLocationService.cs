@@ -22,30 +22,30 @@ namespace CabAgeBusinessServices.Services
         }
 
 
-        public EmployeeLocationBusinessEntity GetLocationByEmployeeId(int id)
+        public EmployeeLocationModel GetLocationByEmployeeId(int id)
         {
-            var employeeLocation = unitOfWork.EmployeeLocationRepository.GetFirst(location => location.EmployeeID == id);
+            var employeeLocation = unitOfWork.EmployeeLocationRepository.GetFirst(location => location.ID == id);
 
             if (employeeLocation == null) return null;
 
-            Mapper.CreateMap<EmployeeLocation, EmployeeLocationBusinessEntity>();
-            Mapper.CreateMap<EmployeeMaster, EmployeeMasterBusinessEntity>();
-            var employeeLocationModel = Mapper.Map<EmployeeLocation,EmployeeLocationBusinessEntity>(employeeLocation);
+            Mapper.CreateMap<EmployeeLocation, EmployeeLocationModel>();
+            Mapper.CreateMap<EmployeeMaster, EmployeeMasterModel>();
+            var employeeLocationModel = Mapper.Map<EmployeeLocation,EmployeeLocationModel>(employeeLocation);
 
             return employeeLocationModel;
         }
 
 
-        public void CreateEmployeeLocation(EmployeeLocationBusinessEntity newEmployeeLocation)
+        public void CreateEmployeeLocation(EmployeeLocationModel newEmployeeLocation)
         {
 
             using (var scope = new TransactionScope())
             {
                 var employee = new EmployeeLocation
                 {
-                    EmployeeGeoLocation = newEmployeeLocation.EmployeeGeoLocation,
-                    EmployeeLocationID = newEmployeeLocation.EmployeeLocationID,
-                    EmployeeID = newEmployeeLocation.EmployeeID
+                    GeoLocation = newEmployeeLocation.GeoLocation,
+                    LocationID = newEmployeeLocation.LocationID,
+                    ID = newEmployeeLocation.ID
 
                 };
                 unitOfWork.EmployeeLocationRepository.Insert(employee);

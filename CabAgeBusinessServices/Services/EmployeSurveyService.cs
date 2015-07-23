@@ -26,53 +26,54 @@ namespace CabAgeBusinessServices.Services
         }
 
 
-        public IEnumerable<EmployeeSurveyBusinessEntity> GetSurveyResultsOfAnEmployee(int employeeId)
+        public IEnumerable<EmployeeSurveyModel> GetSurveyResultsOfAnEmployee(int employeeId)
         {
 
             var employeeSurvey = unitOfWork.EmployeeSurveyRepository.GetBy(survey => survey.EmployeeID == employeeId);
 
             if (employeeSurvey == null) return null;
 
-            Mapper.CreateMap<EmployeeSurveyResult,EmployeeSurveyBusinessEntity>();
-            Mapper.CreateMap<EmployeeMaster, EmployeeMasterBusinessEntity>();
-            Mapper.CreateMap<CategoryMaster, CategoryMasterBusinessEnitity>();
-            var employeeSurveyModel = Mapper.Map<IEnumerable<EmployeeSurveyResult>,IEnumerable<EmployeeSurveyBusinessEntity>>(employeeSurvey);
+            Mapper.CreateMap<EmployeeSurveyResult,EmployeeSurveyModel>();
+            Mapper.CreateMap<EmployeeMaster, EmployeeMasterModel>();
+            Mapper.CreateMap<CategoryMaster, CategoryMasterModel>();
+            var employeeSurveyModel = Mapper.Map<IEnumerable<EmployeeSurveyResult>,IEnumerable<EmployeeSurveyModel>>(employeeSurvey);
 
             return employeeSurveyModel;
         }
 
-        public IEnumerable<EmployeeSurveyBusinessEntity> GetSurveyResultsBasedOnCategory(int categoryId)
+        public IEnumerable<EmployeeSurveyModel> GetSurveyResultsBasedOnCategory(int categoryId)
         {
                
             var employeeSurvey = unitOfWork.EmployeeSurveyRepository.GetBy(survey => survey.CategoryID == categoryId);
 
             if (employeeSurvey == null) return null;
 
-            Mapper.CreateMap<EmployeeSurveyResult, EmployeeSurveyBusinessEntity>();
-            Mapper.CreateMap<EmployeeMaster, EmployeeMasterBusinessEntity>();
-            Mapper.CreateMap<CategoryMaster, CategoryMasterBusinessEnitity>();
-            var employeeSurveyModel = Mapper.Map<IEnumerable<EmployeeSurveyResult>, IEnumerable<EmployeeSurveyBusinessEntity>>(employeeSurvey);
+            Mapper.CreateMap<EmployeeSurveyResult, EmployeeSurveyModel>();
+            Mapper.CreateMap<EmployeeMaster, EmployeeMasterModel>();
+            Mapper.CreateMap<CategoryMaster, CategoryMasterModel>();
+            var employeeSurveyModel = Mapper.Map<IEnumerable<EmployeeSurveyResult>, IEnumerable<EmployeeSurveyModel>>(employeeSurvey);
 
             return employeeSurveyModel;
         }
 
-        public EmployeeSurveyBusinessEntity GetSurveyResultOfEmployeeBasedOnCategory(int employeeId ,int categoryId)
+        public IEnumerable<EmployeeSurveyModel> GetSurveyResultOfEmployeeBasedOnCategory(int employeeId, int categoryId)
         {
 
-            var employeeSurvey = unitOfWork.EmployeeSurveyRepository.GetByID(employeeId, categoryId);
+            var employeeSurvey = unitOfWork.EmployeeSurveyRepository.GetBy(survey => survey.EmployeeID == employeeId 
+                                                                            && survey.CategoryID==categoryId);
 
             if (employeeSurvey == null) return null;
 
-            Mapper.CreateMap<EmployeeSurveyResult, EmployeeSurveyBusinessEntity>();
-            Mapper.CreateMap<EmployeeMaster, EmployeeMasterBusinessEntity>();
-            Mapper.CreateMap<CategoryMaster, CategoryMasterBusinessEnitity>();
-            var employeeSurveyModel = Mapper.Map<EmployeeSurveyResult,EmployeeSurveyBusinessEntity>(employeeSurvey);
+            Mapper.CreateMap<EmployeeSurveyResult, EmployeeSurveyModel>();
+            Mapper.CreateMap<EmployeeMaster, EmployeeMasterModel>();
+            Mapper.CreateMap<CategoryMaster, CategoryMasterModel>();
+            var employeeSurveyModel = Mapper.Map<IEnumerable<EmployeeSurveyResult>, IEnumerable<EmployeeSurveyModel>>(employeeSurvey);
 
             return employeeSurveyModel;
         }
 
 
-        public void CreateEmployeeSurvey(IList<EmployeeSurveyBusinessEntity> employeeSurvey)
+        public void CreateEmployeeSurvey(IList<EmployeeSurveyModel> employeeSurvey)
         {
             foreach (var surveyItem in employeeSurvey)
             {
@@ -83,8 +84,8 @@ namespace CabAgeBusinessServices.Services
                     {
                         CategoryID = surveyItem.CategoryID,
                         EmployeeID = surveyItem.EmployeeID,
-                        Rating = surveyItem.Rating
-
+                        Rating = surveyItem.Rating,
+                        CreatedDate = DateTime.Now
                     };
                     unitOfWork.EmployeeSurveyRepository.Insert(employeeSurveyResult);
                     unitOfWork.Save();
@@ -114,7 +115,7 @@ namespace CabAgeBusinessServices.Services
                 employeeSurveyCategoryCount = employeeSurveyResults.Count();
             }
 
-            return categoryCount == employeeSurveyCategoryCount;
+            return categoryCount <= employeeSurveyCategoryCount;
         }
 
     }

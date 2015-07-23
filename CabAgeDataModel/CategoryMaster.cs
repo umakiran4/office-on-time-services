@@ -19,8 +19,8 @@ namespace CabAgeDataModel
             this.EmployeeSurveyResults = new HashSet<EmployeeSurveyResult>();
         }
     
-        public int CategoryID { get; set; }
-        public string CategoryName { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
     
         public virtual ICollection<EmployeeSurveyResult> EmployeeSurveyResults { get; set; }
     }

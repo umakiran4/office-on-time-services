@@ -47,9 +47,22 @@ namespace CabAgeWebAPI.Controllers
         }
 
         [POST("employeesurvey/create")]
-        public void Post([FromBody] IList<EmployeeSurveyBusinessEntity> employeeSurveyBusinessEntity)
+        public void Post([FromBody] IList<EmployeeSurveyModel> employeeSurveyBusinessEntity)
         {
-            employeeSurveyService.CreateEmployeeSurvey(employeeSurveyBusinessEntity);
+            try
+            {
+                employeeSurveyService.CreateEmployeeSurvey(employeeSurveyBusinessEntity);
+                Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch
+            {
+                var message
+                    = new System.Web.Http.HttpError("OOPS !! Something went wrong . Please contract krishna.chandran@socgen.com") { { "ErrorCode", 500 } };
+
+                throw new
+                   HttpResponseException(Request.CreateErrorResponse
+                   (HttpStatusCode.InternalServerError, message));
+            }
         }
 
 

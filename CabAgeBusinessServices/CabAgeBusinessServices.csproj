@@ -81,9 +81,9 @@
     <Compile Include="Services\EmployeSurveyService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CabAgeBusinessEntities\CabAgeBusinessEntities.csproj">
+    <ProjectReference Include="..\CabAgeBusinessEntities\CabAgeModels.csproj">
       <Project>{b9a05520-6112-40c6-a3cc-9b712efe07de}</Project>
-      <Name>CabAgeBusinessEntities</Name>
+      <Name>CabAgeModels</Name>
     </ProjectReference>
     <ProjectReference Include="..\CabAgeDataModel\CabAgeDataModel.csproj">
       <Project>{6b3befb7-2955-4335-84cd-52f7191f0502}</Project>

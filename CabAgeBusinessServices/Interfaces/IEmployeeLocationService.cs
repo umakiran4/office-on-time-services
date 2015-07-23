@@ -10,8 +10,8 @@ namespace CabAgeBusinessServices.Interfaces
     public interface IEmployeeLocationService
     {
         
-        EmployeeLocationBusinessEntity GetLocationByEmployeeId(int id);
+        EmployeeLocationModel GetLocationByEmployeeId(int id);
 
-        void CreateEmployeeLocation(EmployeeLocationBusinessEntity newEmployeeLocation);
+        void CreateEmployeeLocation(EmployeeLocationModel newEmployeeLocation);
     }
 }

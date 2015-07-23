@@ -20,10 +20,10 @@ namespace CabAgeDataModel
             this.EmployeeSurveyResults = new HashSet<EmployeeSurveyResult>();
         }
     
-        public int EmployeeID { get; set; }
-        public string EmployeeName { get; set; }
-        public string EmployeeEmail { get; set; }
-        public Nullable<long> EmployeeMobileNumber { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public Nullable<long> Mobile { get; set; }
     
         public virtual ICollection<EmployeeLocation> EmployeeLocations { get; set; }
         public virtual ICollection<EmployeeSurveyResult> EmployeeSurveyResults { get; set; }

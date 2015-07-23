@@ -29,7 +29,7 @@ namespace CabAgeWebAPI.Controllers
         }
 
         [GET("employeelocation/create")]
-        public void Post([FromBody] EmployeeLocationBusinessEntity employeeLocationBusinessEntity)
+        public void Post([FromBody] EmployeeLocationModel employeeLocationBusinessEntity)
         {
             employeeLocationService.CreateEmployeeLocation(employeeLocationBusinessEntity);
         }

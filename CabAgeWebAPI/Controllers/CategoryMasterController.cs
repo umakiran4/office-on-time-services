@@ -26,7 +26,7 @@ namespace CabAgeWebAPI.Controllers
         {
             var categories = categoryMasterService.GetAllCategories();
             if (categories == null || !categories.Any()) return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Categories not found");
-            var categoryEntities = categories as List<CategoryMasterBusinessEnitity> ?? categories.ToList();
+            var categoryEntities = categories as List<CategoryMasterModel> ?? categories.ToList();
             if (categoryEntities.Any())
                 return Request.CreateResponse(HttpStatusCode.OK, categoryEntities);
             return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Categories not found");

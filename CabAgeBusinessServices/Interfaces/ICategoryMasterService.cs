@@ -9,7 +9,7 @@ namespace CabAgeBusinessServices.Interfaces
 {
    public interface ICategoryMasterService
     {
-        CategoryMasterBusinessEnitity GetCategoryById(int productId);
-        IEnumerable<CategoryMasterBusinessEnitity> GetAllCategories();
+        CategoryMasterModel GetCategoryById(int productId);
+        IEnumerable<CategoryMasterModel> GetAllCategories();
     }
 }

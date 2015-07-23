@@ -10,10 +10,10 @@ namespace CabAgeBusinessServices.Interfaces
     public interface IEmployeeSurveyService
     {
 
-        IEnumerable<EmployeeSurveyBusinessEntity> GetSurveyResultsOfAnEmployee(int employeeId);
-        IEnumerable<EmployeeSurveyBusinessEntity> GetSurveyResultsBasedOnCategory(int categoryId);
-        EmployeeSurveyBusinessEntity GetSurveyResultOfEmployeeBasedOnCategory(int employeeId, int categoryId);
-        void CreateEmployeeSurvey(IList<EmployeeSurveyBusinessEntity> employeeSurvey);
+        IEnumerable<EmployeeSurveyModel> GetSurveyResultsOfAnEmployee(int employeeId);
+        IEnumerable<EmployeeSurveyModel> GetSurveyResultsBasedOnCategory(int categoryId);
+        IEnumerable<EmployeeSurveyModel> GetSurveyResultOfEmployeeBasedOnCategory(int employeeId, int categoryId);
+        void CreateEmployeeSurvey(IList<EmployeeSurveyModel> employeeSurvey);
         bool HasEmployeeCompletedTheSurvey(int employeeID);
     }
 }

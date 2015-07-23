@@ -331,9 +331,9 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CabAgeBusinessEntities\CabAgeBusinessEntities.csproj">
+    <ProjectReference Include="..\CabAgeBusinessEntities\CabAgeModels.csproj">
       <Project>{b9a05520-6112-40c6-a3cc-9b712efe07de}</Project>
-      <Name>CabAgeBusinessEntities</Name>
+      <Name>CabAgeModels</Name>
     </ProjectReference>
     <ProjectReference Include="..\CabAgeBusinessServices\CabAgeBusinessServices.csproj">
       <Project>{ed961e1e-540b-453c-a31f-bda0f0f41e19}</Project>

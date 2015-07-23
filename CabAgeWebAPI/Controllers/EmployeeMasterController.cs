@@ -26,7 +26,7 @@ namespace CabAgeWebAPI.Controllers
         {
             var employees = employeeMasterService.GetAllEmployees();
             if (employees == null || !employees.Any()) return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Employees not found");
-            var employeeEntities = employees as List<EmployeeMasterBusinessEntity> ?? employees.ToList();
+            var employeeEntities = employees as List<EmployeeMasterModel> ?? employees.ToList();
             if (employeeEntities.Any())
                 return Request.CreateResponse(HttpStatusCode.OK, employeeEntities);
             return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Employees not found");
@@ -41,9 +41,25 @@ namespace CabAgeWebAPI.Controllers
         }
 
         [POST("employee/create")]
-        public void Post([FromBody] EmployeeMasterBusinessEntity employeeMasterBusinessEntity)
+        public void Post([FromBody] EmployeeMasterModel employeeMasterBusinessEntity)
         {
-            employeeMasterService.CreateEmployee(employeeMasterBusinessEntity);
+            employeeMasterBusinessEntity = null;
+
+            try
+            {
+                employeeMasterService.CreateEmployee(employeeMasterBusinessEntity);
+                Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch
+            {
+                var message
+                    = new System.Web.Http.HttpError("OOPS !! Something went wrong . Please contract krishna.chandran@socgen.com") { { "ErrorCode", 500 } };
+
+                throw new
+                   HttpResponseException(Request.CreateErrorResponse
+                   (HttpStatusCode.InternalServerError, message));
+            }
+            
         }
 
 

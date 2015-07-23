@@ -9,11 +9,11 @@ namespace CabAgeBusinessServices.Interfaces
 {
     public interface IEmployeeMasterService
     {
-        EmployeeMasterBusinessEntity GetEmployeeById(int id);
+        EmployeeMasterModel GetEmployeeById(int id);
 
-        IEnumerable<EmployeeMasterBusinessEntity> GetAllEmployees();
+        IEnumerable<EmployeeMasterModel> GetAllEmployees();
 
-        void CreateEmployee(EmployeeMasterBusinessEntity newEmployee);
+        void CreateEmployee(EmployeeMasterModel newEmployee);
 
         bool IsEmployeeRegistered(int id);
 
