@@ -70,6 +70,26 @@ namespace CabAgeBusinessServices.Services
             }
         }
 
+        public void UpdateEmployee(EmployeeMasterModel existingEmployee)
+        {
+
+            using (var scope = new TransactionScope())
+            {
+                var employee = new EmployeeMaster
+                {
+                    Email = existingEmployee.Email,
+                    ID = existingEmployee.ID,
+                    Name = existingEmployee.Name,
+                    Mobile = existingEmployee.Mobile,
+
+                };
+                unitOfWork.EmployeeMasterRepository.Update(employee);
+                unitOfWork.Save();
+                scope.Complete();
+
+            }
+        }
+
         public bool IsEmployeeRegistered(int id)
         {
             return unitOfWork.EmployeeMasterRepository.Exists(id);

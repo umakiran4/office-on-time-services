@@ -42,8 +42,7 @@ namespace CabAgeWebAPI.Controllers
 
         [POST("employee/create")]
         public void Post([FromBody] EmployeeMasterModel employeeMasterBusinessEntity)
-        {
-            employeeMasterBusinessEntity = null;
+        {           
 
             try
             {
@@ -62,6 +61,26 @@ namespace CabAgeWebAPI.Controllers
             
         }
 
+        [PUT("employee/update")]
+        public void Put([FromBody] EmployeeMasterModel employeeMasterBusinessEntity)
+        {
+
+            try
+            {
+                employeeMasterService.UpdateEmployee(employeeMasterBusinessEntity);
+                Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch
+            {
+                var message
+                    = new System.Web.Http.HttpError("OOPS !! Something went wrong . Please contract krishna.chandran@socgen.com") { { "ErrorCode", 500 } };
+
+                throw new
+                   HttpResponseException(Request.CreateErrorResponse
+                   (HttpStatusCode.InternalServerError, message));
+            }
+
+        }
 
         [AcceptVerbs("GET")]
         [GET("employee/isregistered/{id?}")]

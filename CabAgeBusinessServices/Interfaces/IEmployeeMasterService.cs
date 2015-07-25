@@ -15,6 +15,8 @@ namespace CabAgeBusinessServices.Interfaces
 
         void CreateEmployee(EmployeeMasterModel newEmployee);
 
+        void UpdateEmployee(EmployeeMasterModel existingEmployee);
+
         bool IsEmployeeRegistered(int id);
 
     }
